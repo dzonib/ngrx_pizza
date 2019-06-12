@@ -9,7 +9,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CoreModule } from "./data/data.module";
 import { PizzasService } from "./pizza.service";
-
+import { EffectsModule } from '@ngrx/effects';
+import { effects} from './data/stores'
 const environment = {
   development: true,
   production: false
@@ -25,6 +26,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}, { metaReducers }),
+    EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({}),
     CoreModule,
     HttpClientModule

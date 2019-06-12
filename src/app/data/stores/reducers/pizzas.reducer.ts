@@ -52,7 +52,12 @@ export function pizzasReducer(
     case fromPizzas.LOAD_PIZZAS:
       return { ...state, loading: true };
     case fromPizzas.LOAD_PIZZAS_SUCCESS:
-      return { ...state, loading: false, loaded: true };
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        data: [...state.data, ...action.payload]
+      };
     case fromPizzas.LOAD_PIZZAS_FAIL:
       return { ...state, loading: false, loaded: false };
     default:
@@ -63,4 +68,3 @@ export function pizzasReducer(
 export const getPizzasLoading = (state: PizzaState) => state.loading;
 export const getPizzasLoaded = (state: PizzaState) => state.loaded;
 export const getPizzas = (state: PizzaState) => state.data;
-

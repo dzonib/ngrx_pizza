@@ -19,7 +19,6 @@ export class PizzasEffect {
     switchMap(() => {
       return this.pizzaService.getPizzas().pipe(
         map(pizzas => {
-          console.log(pizzas);
           return new pizzaActions.LoadPizzasSucess(pizzas);
         }),
         // if there is error return observable of action
