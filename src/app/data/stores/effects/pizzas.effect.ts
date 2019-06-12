@@ -17,13 +17,14 @@ export class PizzasEffect {
   loadPizzas$ = this.actions$.pipe(
     ofType(pizzaActions.LOAD_PIZZAS),
     switchMap(() => {
-      return this.pizzaService
-        .getPizzas()
-        .pipe(
-          map(pizzas => new pizzaActions.LoadPizzasSucess(pizzas)),
-          // if there is error return observable of action
-          catchError(error => of(new pizzaActions.LoadPizzasFail(error)))
-        )
+      return this.pizzaService.getPizzas().pipe(
+        map(pizzas => {
+          console.log(pizzas);
+          return new pizzaActions.LoadPizzasSucess(pizzas);
+        }),
+        // if there is error return observable of action
+        catchError(error => of(new pizzaActions.LoadPizzasFail(error)))
+      );
     })
   );
 }
